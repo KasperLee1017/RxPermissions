@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.KasperLee1017'
-version = '0.12.4' // 這邊你可以再換你要的版本號
+version = '0.12.6' // ✅ 更新成最新 Tag 版本
 
 android {
     compileSdkVersion 33
@@ -46,16 +46,16 @@ dependencies {
     testImplementation rootProject.ext.khronosOpenGLApi
 }
 
-publishing {
-    publications {
-        release(MavenPublication) {
-            afterEvaluate {
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
                 from components.release
-            }
 
-            groupId = 'com.github.KasperLee1017'
-            artifactId = 'RxPermissions'
-            version = '0.12.4'
+                groupId = 'com.github.KasperLee1017'
+                artifactId = 'RxPermissions'
+                version = '0.12.6'
+            }
         }
     }
 }
