@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.KasperLee1017'
-version = '0.12.34'
+version = '0.12.35'
 
 android {
     compileSdkVersion 33
@@ -14,38 +14,61 @@ android {
         targetSdkVersion 33
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions.unitTests.includeAndroidResources = true
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
+}
+
+dependencies {
+    implementation rootProject.ext.rxJava
+    implementation rootProject.ext.androidXFragment
+    implementation rootProject.ext.androidXAnnotation
+    implementation rootProject.ext.androidXAppcompat
+
+    testImplementation rootProject.ext.junit
+    testImplementation rootProject.ext.mockito
+    testImplementation rootProject.ext.robolectric
+    testImplementation rootProject.ext.khronosOpenGLApi
 }
 
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
+                // 指定 AAR 檔案來源
+                artifact("$buildDir/outputs/aar/lib-release.aar") {
+                    builtBy tasks.named("bundleReleaseAar")
+                }
+
                 groupId = 'com.github.KasperLee1017'
                 artifactId = 'RxPermissions'
-                version = '0.12.34'
+                version = '0.12.35'
 
-                artifact("$buildDir/outputs/aar/lib-release.aar")
+                pom.withXml {
+                    asNode().appendNode('description', 'RxPermissions for Android')
+                }
             }
         }
 
-    }
-}
-
-tasks.register('copyAarToRoot', Copy) {
-    from("$buildDir/outputs/aar/")
-    include("lib-release.aar")
-    into("${rootDir}")
-    rename("lib-release.aar", "RxPermissions-${version}.aar")
-}
-
-tasks.whenTaskAdded { task ->
-    if (task.name == 'publishReleasePublicationToMavenRepository') {
-        task.finalizedBy(copyAarToRoot)
+        repositories {
+            maven {
+                url = uri("${rootDir}/.m2/repository")
+            }
+        }
     }
 }
