@@ -1,2 +1,2 @@
+rootProject.name = 'RxPermissions'
 include ':lib'
-project(':lib').name = 'RxPermissions'
