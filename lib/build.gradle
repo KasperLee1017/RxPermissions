@@ -55,6 +55,9 @@ afterEvaluate {
                 groupId = 'com.github.KasperLee1017'
                 artifactId = 'RxPermissions'
                 version = '0.12.6'
+
+                // ✅ 告訴 JitPack 檔案要去哪找（通常是 build/outputs/aar）
+                artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
             }
         }
     }
