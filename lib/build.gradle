@@ -1,26 +1,28 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
 
 group = 'com.github.KasperLee1017'
-version = 'v0.12.1'
+version = '0.12.4' // 這邊你可以再換你要的版本號
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 33
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 33
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-    }
-
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -42,4 +44,18 @@ dependencies {
     testImplementation rootProject.ext.mockito
     testImplementation rootProject.ext.robolectric
     testImplementation rootProject.ext.khronosOpenGLApi
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            afterEvaluate {
+                from components.release
+            }
+
+            groupId = 'com.github.KasperLee1017'
+            artifactId = 'RxPermissions'
+            version = '0.12.4'
+        }
+    }
 }

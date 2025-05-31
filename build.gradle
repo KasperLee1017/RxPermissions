@@ -5,7 +5,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.4'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
@@ -33,9 +32,4 @@ ext {
     robolectric = "org.robolectric:robolectric:$robolectricVersion"
     robolectricShadowsSupport = "org.robolectric:shadows-support-v4:$robolectricVersion"
     khronosOpenGLApi = "org.khronos:opengl-api:gl1.1-android-2.1_r1"
-
-    // ✅ metadata 只是留著，不會影響 build
-    publishedGroupId = 'com.tbruyelle.rxpermissions3'
-    artifact = 'rxpermissions'
-    libraryVersion = '0.9.5'
 }
