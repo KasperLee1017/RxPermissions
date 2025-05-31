@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.KasperLee1017'
-version = '0.12.32'
+version = '0.12.33'
 
 android {
     compileSdkVersion 33
@@ -50,11 +50,11 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.release
+                artifact("$buildDir/outputs/aar/lib-release.aar")
 
                 groupId = 'com.github.KasperLee1017'
                 artifactId = 'RxPermissions'
-                version = '0.12.32'
+                version = '0.12.33'
 
                 pom.withXml {
                     asNode().appendNode('description', 'RxPermissions for Android')
