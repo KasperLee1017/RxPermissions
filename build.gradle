@@ -1,19 +1,19 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral() // ✅ 用這個取代 jcenter（jcenter 已經關閉）
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.android.tools.build:gradle:7.0.4' // ✅ 建議升級，與 JitPack 支援相容
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1' // ✅ JitPack 會用這個產出 .aar
+        // classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0' ❌ 已移除：bintray plugin（已失效）
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral() // ✅ 取代 jcenter
     }
 }
 
@@ -36,6 +36,7 @@ ext {
     // Workaround for https://github.com/robolectric/robolectric/issues/1932
     khronosOpenGLApi = "org.khronos:opengl-api:gl1.1-android-2.1_r1"
 
+    // 📦 下面這些 bintray 發佈資訊已無效，但可保留為 metadata，不會影響 build
     bintrayRepo = 'tbruyelle'
     bintrayName = 'RxPermissions3'
 
