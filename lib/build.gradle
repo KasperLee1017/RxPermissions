@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.KasperLee1017'
-version = '0.12.21'
+version = '0.12.22'
 
 android {
     compileSdkVersion 33
@@ -50,6 +50,7 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
+                // 安全抓 release component，避免版本問題 null
                 def component = components.findByName("release")
                 if (component != null) {
                     from component
@@ -57,11 +58,17 @@ afterEvaluate {
 
                 groupId = 'com.github.KasperLee1017'
                 artifactId = 'RxPermissions'
-                version = '0.12.21'
+                version = '0.12.22'
 
                 pom.withXml {
                     asNode().appendNode('description', 'RxPermissions for Android')
                 }
+            }
+        }
+
+        repositories {
+            maven {
+                url = uri("$buildDir/repo")
             }
         }
     }
