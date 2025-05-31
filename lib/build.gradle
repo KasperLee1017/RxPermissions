@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.KasperLee1017'
-version = '0.12.9'
+version = '0.12.10'
 
 android {
     compileSdkVersion 33
@@ -50,14 +50,22 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.release
-
                 groupId = 'com.github.KasperLee1017'
                 artifactId = 'RxPermissions'
-                version = '0.12.9'
+                version = '0.12.10'
 
-                artifact("$buildDir/outputs/aar/RxPermissions-release.aar")
+                artifact("$buildDir/outputs/aar/lib-release.aar")
+                pom.withXml {
+                    asNode().appendNode('description', 'RxPermissions for Android')
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                url = uri("$buildDir/repo")
             }
         }
     }
 }
+
