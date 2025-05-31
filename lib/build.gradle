@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.KasperLee1017'
-version = '0.12.8'
+version = '0.12.9'
 
 android {
     compileSdkVersion 33
@@ -54,9 +54,9 @@ afterEvaluate {
 
                 groupId = 'com.github.KasperLee1017'
                 artifactId = 'RxPermissions'
-                version = '0.12.8'
+                version = '0.12.9'
 
-                artifact("$buildDir/outputs/aar/lib-release.aar")
+                artifact("$buildDir/outputs/aar/RxPermissions-release.aar")
             }
         }
     }
