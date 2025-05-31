@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.KasperLee1017'
-version = '0.12.29'
+version = '0.12.30'
 
 android {
     compileSdkVersion 33
@@ -50,14 +50,9 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                def component = components.findByName("release")
-                if (component != null) {
-                    from component
-                }
-
                 groupId = 'com.github.KasperLee1017'
                 artifactId = 'RxPermissions'
-                version = '0.12.29'
+                version = '0.12.30'
 
                 artifact("$buildDir/outputs/aar/lib-release.aar") {
                     builtBy tasks.named("bundleReleaseAar")
