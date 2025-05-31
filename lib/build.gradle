@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.KasperLee1017'
-version = '0.12.7' // ✅ 更新成最新 Tag 版本
+version = '0.12.8'
 
 android {
     compileSdkVersion 33
@@ -54,10 +54,9 @@ afterEvaluate {
 
                 groupId = 'com.github.KasperLee1017'
                 artifactId = 'RxPermissions'
-                version = '0.12.7'
+                version = '0.12.8'
 
-                // ✅ 告訴 JitPack 檔案要去哪找（通常是 build/outputs/aar）
-                artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+                artifact("$buildDir/outputs/aar/lib-release.aar")
             }
         }
     }
