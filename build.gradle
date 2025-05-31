@@ -6,7 +6,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.4' // ✅ 建議升級，與 JitPack 支援相容
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1' // ✅ JitPack 會用這個產出 .aar
-        // classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0' ❌ 已移除：bintray plugin（已失效）
     }
 }
 
