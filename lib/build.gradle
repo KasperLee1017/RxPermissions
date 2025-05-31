@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven' // ✅ JitPack 發佈關鍵
-apply from: 'jitpack.gradle' // ✅ 可用來設定 groupId 等資訊
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.KasperLee1017'
+version = 'v0.12'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
