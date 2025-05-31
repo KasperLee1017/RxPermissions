@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.KasperLee1017'
-version = '0.12.37'
+version = '0.12.38'
 
 android {
     compileSdkVersion 33
@@ -54,7 +54,7 @@ afterEvaluate {
 
                 groupId = 'com.github.KasperLee1017'
                 artifactId = 'RxPermissions'
-                version = '0.12.37'
+                version = '0.12.38'
 
                 pom.withXml {
                     asNode().appendNode('description', 'RxPermissions for Android')
@@ -67,5 +67,11 @@ afterEvaluate {
                 url = uri("$buildDir/repo")
             }
         }
+    }
+
+    tasks.register("copyAarToMavenLocal", Copy) {
+        dependsOn "publishReleasePublicationToMavenRepository"
+        from("$buildDir/repo/com/github/KasperLee1017/RxPermissions/0.12.38/")
+        into("${System.properties['user.home']}/.m2/repository/com/github/KasperLee1017/RxPermissions/0.12.38/")
     }
 }
