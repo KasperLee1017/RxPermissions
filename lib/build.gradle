@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.KasperLee1017'
-version = '0.12.19'
+version = '0.12.20'
 
 android {
     compileSdkVersion 33
@@ -46,22 +46,18 @@ dependencies {
     testImplementation rootProject.ext.khronosOpenGLApi
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                def releaseComponent = components.findByName("release")
-                if (releaseComponent != null) {
-                    from releaseComponent
-                }
+publishing {
+    publications {
+        release(MavenPublication) {
+            // 不要用 afterEvaluate，也不要用 findByName，直接 try
+            from components.release
 
-                groupId = 'com.github.KasperLee1017'
-                artifactId = 'RxPermissions'
-                version = '0.12.19'
+            groupId = 'com.github.KasperLee1017'
+            artifactId = 'RxPermissions'
+            version = '0.12.20'
 
-                pom.withXml {
-                    asNode().appendNode('description', 'RxPermissions for Android')
-                }
+            pom.withXml {
+                asNode().appendNode('description', 'RxPermissions for Android')
             }
         }
     }
