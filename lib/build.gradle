@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.KasperLee1017'
-version = '0.12.35'
+version = '0.12.36'
 
 android {
     compileSdkVersion 33
@@ -50,14 +50,13 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                // 指定 AAR 檔案來源
                 artifact("$buildDir/outputs/aar/lib-release.aar") {
                     builtBy tasks.named("bundleReleaseAar")
                 }
 
                 groupId = 'com.github.KasperLee1017'
                 artifactId = 'RxPermissions'
-                version = '0.12.35'
+                version = '0.12.36'
 
                 pom.withXml {
                     asNode().appendNode('description', 'RxPermissions for Android')
@@ -67,7 +66,7 @@ afterEvaluate {
 
         repositories {
             maven {
-                url = uri("${rootDir}/.m2/repository")
+                url = uri("$buildDir/repo")
             }
         }
     }
