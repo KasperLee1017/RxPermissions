@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-apply from: 'jitpack.gradle'
+apply plugin: 'com.github.dcendents.android-maven' // ✅ JitPack 發佈關鍵
+apply from: 'jitpack.gradle' // ✅ 可用來設定 groupId 等資訊
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -8,20 +9,21 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     testOptions.unitTests.includeAndroidResources = true
     testOptions.unitTests.all {
-        // unitTests.returnDefaultValues = true
-        // Always show the result of every unit test, even if it passes.
         testLogging {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
@@ -34,12 +36,8 @@ dependencies {
     implementation rootProject.ext.androidXAnnotation
     implementation rootProject.ext.androidXAppcompat
 
-    testImplementation 'junit:junit:4.13'
+    testImplementation rootProject.ext.junit
     testImplementation rootProject.ext.mockito
     testImplementation rootProject.ext.robolectric
     testImplementation rootProject.ext.khronosOpenGLApi
 }
-
-// Commented to use JitPack instead of bintray
-//apply from: 'install.gradle'
-//apply from: 'bintray.gradle'

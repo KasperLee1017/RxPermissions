@@ -1,3 +1,2 @@
-apply plugin: 'com.github.dcendents.android-maven'
-
-group = 'com.github.tbruyelle'
+group = 'com.github.KasperLee1017'
+version = 'v0.12'
